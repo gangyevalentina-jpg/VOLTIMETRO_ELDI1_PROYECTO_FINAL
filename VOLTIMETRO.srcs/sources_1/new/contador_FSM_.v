@@ -18,7 +18,7 @@ module contador_FSM_ (
             end 
           
           	else begin
-                S_FSM_ <= x_FSM_ + 1'b1;
+                S_FSM_ <= S_FSM_ + 1'b1;
                 F_FSM_ <= 1'b0;
             end
         end
