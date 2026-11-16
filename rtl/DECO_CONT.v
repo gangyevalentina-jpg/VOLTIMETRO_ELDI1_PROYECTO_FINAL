@@ -1,6 +1,7 @@
 module DECO_CONT(
-    input [3:0]s,
-    output [9:0]E
+    input wire [3:0]s,
+    
+    output wire [9:0]E_ff
 );
     
     wire S3=s[3], S2=s[2], S1=s[1], S0=s[0];
@@ -17,6 +18,6 @@ module DECO_CONT(
     assign En_1 = S3 & ~S2 & ~S1 & S0;
     assign En_0 = S3 & ~S2 & S1 & ~S0;
 
-    assign E = {En_9, En_8, En_7, En_6, En_5, En_4, En_3, En_2, En_1, En_0};
+    assign E_ff = {En_9, En_8, En_7, En_6, En_5, En_4, En_3, En_2, En_1, En_0};
 
 endmodule

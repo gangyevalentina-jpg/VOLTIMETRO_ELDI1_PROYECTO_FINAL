@@ -1,6 +1,7 @@
 module mem_rom(
-    input wire [9:0] B,     
-    output reg [15:0] S  
+    input wire [9:0] Addr,
+
+    output reg [15:0] Out  
 );
 
     reg [15:0] rom_mem[0:1023];
@@ -10,7 +11,7 @@ module mem_rom(
     end
 
     always @(*) begin
-        S = rom_mem[B];
+        Out = rom_mem[Addr];
     end
 
 endmodule

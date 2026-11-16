@@ -1,8 +1,9 @@
 module DECODIFICADOR(
-    input [3:0] in,
-    output [6:0] out
+    input [3:0] M,
+
+    output [6:0] Di
 );
-    wire A = in[3], B = in[2], C = in[1], D = in[0]; 
+    wire A = M[3], B = M[2], C = M[1], D = M[0]; 
     wire a, b, c, d, e, f, g;
 
     assign a = ~((~A & ~B & ~C & D) | (~A & B & ~C & ~D));
@@ -13,6 +14,6 @@ module DECODIFICADOR(
     assign f = ~((~A & ~B & D) | (~A & ~B & C) | (~A & C & D));
     assign g = ~((~A & ~B & ~C) | (~A & B & C & D));
 
-    assign out = {a, b, c, d, e, f, g};
+    assign Di = {a, b, c, d, e, f, g};
 endmodule
 

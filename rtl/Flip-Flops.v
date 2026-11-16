@@ -1,47 +1,50 @@
-module Flip-Flops
-  (
+module Flip_Flops (
     input  wire       clk,    
-    input  wire       rst,   
+    input  wire       R,   
     input  wire       B,      
-    input  wire [9:0] E_deco, 
-    input  wire       P,      
-    output reg  [9:0] Q_rom  
+    input  wire [9:0] E_ff, 
+    input  wire       P,   
+        
+    output reg  [9:0] Addr,  
+    output wire [9:0] R_2R 
 );
 
-    reg [9:0] ff_etapa1;
+    reg [9:0] Etapa1;
+    assign R_2R = Etapa1;
 
-
-    always @(posedge clk or posedge rst) begin
-        if (rst) begin
-            ff_etapa1 <= 10'b0000000000;
-        end else begin
-            if (E_deco[0]) ff_etapa1[0] <= B;
-            if (E_deco[1]) ff_etapa1[1] <= B;
-            if (E_deco[2]) ff_etapa1[2] <= B;
-            if (E_deco[3]) ff_etapa1[3] <= B;
-            if (E_deco[4]) ff_etapa1[4] <= B;
-            if (E_deco[5]) ff_etapa1[5] <= B;
-            if (E_deco[6]) ff_etapa1[6] <= B;
-            if (E_deco[7]) ff_etapa1[7] <= B;
-            if (E_deco[8]) ff_etapa1[8] <= B;
-            if (E_deco[9]) ff_etapa1[9] <= B;
+    always @(posedge clk or posedge R) begin
+        if (R) begin
+            Etapa1 <= 10'b0000000000;
+        end 
+        else begin
+            if (E_ff[0]) Etapa1[0] <= B;
+            if (E_ff[1]) Etapa1[1] <= B;
+            if (E_ff[2]) Etapa1[2] <= B;
+            if (E_ff[3]) Etapa1[3] <= B;
+            if (E_ff[4]) Etapa1[4] <= B;
+            if (E_ff[5]) Etapa1[5] <= B;
+            if (E_ff[6]) Etapa1[6] <= B;
+            if (E_ff[7]) Etapa1[7] <= B;
+            if (E_ff[8]) Etapa1[8] <= B;
+            if (E_ff[9]) Etapa1[9] <= B;
         end
     end
 
-    always @(posedge clk or posedge rst) begin
-        if (rst) begin
-            Q_rom <= 10'b0000000000;
-        end else if (P) begin
-            Q_rom[0] <= ff_etapa1[0];
-            Q_rom[1] <= ff_etapa1[1];
-            Q_rom[2] <= ff_etapa1[2];
-            Q_rom[3] <= ff_etapa1[3];
-            Q_rom[4] <= ff_etapa1[4];
-            Q_rom[5] <= ff_etapa1[5];
-            Q_rom[6] <= ff_etapa1[6];
-            Q_rom[7] <= ff_etapa1[7];
-            Q_rom[8] <= ff_etapa1[8];
-            Q_rom[9] <= ff_etapa1[9];
+    always @(posedge clk or posedge R) begin
+        if (R) begin
+            Addr <= 10'b0000000000;
+        end 
+        else if (P) begin
+            Addr[0] <= Etapa1[0];
+            Addr[1] <= Etapa1[1];
+            Addr[2] <= Etapa1[2];
+            Addr[3] <= Etapa1[3];
+            Addr[4] <= Etapa1[4];
+            Addr[5] <= Etapa1[5];
+            Addr[6] <= Etapa1[6];
+            Addr[7] <= Etapa1[7];
+            Addr[8] <= Etapa1[8];
+            Addr[9] <= Etapa1[9];
         end
     end
 

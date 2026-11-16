@@ -1,14 +1,15 @@
 module MUX_2x1_4bits(
     input wire [3:0] in_voltios, 
     input wire [3:0] in_milis,   
-    input wire sel,              
-    output wire [3:0] out
+    input wire A,
+
+    output wire [3:0] M
 );
 
     
-    assign out[0] = (sel & in_voltios[0]) | (~sel & in_milis[0]);
-    assign out[1] = (sel & in_voltios[1]) | (~sel & in_milis[1]);
-    assign out[2] = (sel & in_voltios[2]) | (~sel & in_milis[2]);
-    assign out[3] = (sel & in_voltios[3]) | (~sel & in_milis[3]);
+    assign M[0] = (A & in_voltios[0]) | (~A & in_milis[0]);
+    assign M[1] = (A & in_voltios[1]) | (~A & in_milis[1]);
+    assign M[2] = (A & in_voltios[2]) | (~A & in_milis[2]);
+    assign M[3] = (A & in_voltios[3]) | (~A & in_milis[3]);
 
 endmodule

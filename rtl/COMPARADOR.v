@@ -1,8 +1,8 @@
 module COMPARADOR(
-    input wire [9:0] B,
-    output wire mayor
+    input wire [9:0] Addr,
+    output wire A
 );
     
-    assign mayor = B[9] | B[8] | ( B[7] & B[6] & ( B[5] | B[4] | (B[3] & B[2] & (B[1] | B[0])) ) );
+    assign A = Addr[9] | Addr[8] | ( Addr[7] & Addr[6] & ( Addr[5] | Addr[4] | (Addr[3] & Addr[2] & (Addr[1] | Addr[0])) ) );
 
 endmodule
