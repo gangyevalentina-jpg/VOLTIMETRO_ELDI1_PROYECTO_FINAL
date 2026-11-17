@@ -25,6 +25,7 @@ module Modulo_Principal (
     wire       A;
     wire       B;
     wire       P;
+    wire       WE;
 
   	wire [3:0] S;
   	wire [3:0] M1;
@@ -49,7 +50,8 @@ module Modulo_Principal (
         .R(R),    
         .E(E),
         .B(B),
-        .P(P)
+        .P(P),
+        .WE(WE)
     );
 
     contador_FSM_ Bloque_Contador(
@@ -73,7 +75,8 @@ module Modulo_Principal (
         .P(P),
         .Sw1(Sw1),      
         .Addr(Addr),
-        .R_2R(R_2R) 
+        .R_2R(R_2R),
+        .WE(WE) 
     );
 
     mem_rom Bloque_Memoria(
