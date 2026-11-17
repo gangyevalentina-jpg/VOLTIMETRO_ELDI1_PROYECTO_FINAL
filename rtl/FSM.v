@@ -32,6 +32,6 @@ module FSM(
   	assign E = ~Q[3] & ~Q[2] & ~Q[1] & Q[0] & ~F;
     assign B = (~Q[3] & Q[2] & ~Q[1] & ~Q[0]) | (~Q[3] & ~Q[2] & Q[1] & ~Q[0] & C);
     assign P = ~Q[3] & ~Q[2] & ~Q[1] & Q[0] & F;
-    assign WE = (~Q[3] & Q[2] & ~Q[1] & ~Q[0]) | (~Q[3] & ~Q[2] & Q[1] & ~Q[0])
+    assign WE = (~Q[3] & Q[2] & ~Q[1] & ~Q[0]) | (~Q[3] & ~Q[2] & Q[1] & ~Q[0]);
 
 endmodule
