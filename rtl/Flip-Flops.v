@@ -5,6 +5,7 @@ module Flip_Flops (
     input  wire [9:0] E_ff, 
     input  wire       P,   
     input wire        Sw1,
+    input wire        WE,
         
     output reg  [9:0] Addr,  
     output wire [9:0] R_2R 
@@ -34,20 +35,19 @@ module Flip_Flops (
     end
 
     always @(posedge clk or posedge R) begin
-        if (R) begin
-            Addr <= 10'b0000000000;
-        end 
-        else if (En_Etapa2) begin
-            Addr[0] <= Etapa1[0];
-            Addr[1] <= Etapa1[1];
-            Addr[2] <= Etapa1[2];
-            Addr[3] <= Etapa1[3];
-            Addr[4] <= Etapa1[4];
-            Addr[5] <= Etapa1[5];
-            Addr[6] <= Etapa1[6];
-            Addr[7] <= Etapa1[7];
-            Addr[8] <= Etapa1[8];
-            Addr[9] <= Etapa1[9];
+        if (WE) begin
+            if (En_Etapa2) begin
+                Addr[0] <= Etapa1[0];
+                Addr[1] <= Etapa1[1];
+                Addr[2] <= Etapa1[2];
+                Addr[3] <= Etapa1[3];
+                Addr[4] <= Etapa1[4];
+                Addr[5] <= Etapa1[5];
+                Addr[6] <= Etapa1[6];
+                Addr[7] <= Etapa1[7];
+                Addr[8] <= Etapa1[8];
+                Addr[9] <= Etapa1[9];
+            end
         end
     end
 

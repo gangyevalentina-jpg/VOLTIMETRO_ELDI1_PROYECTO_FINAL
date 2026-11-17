@@ -13,8 +13,8 @@ module contador_FSM_ (
             F <= 1'b0;
         end 
      	else if (E) begin
-          	if (S == 4'd10) begin
-                S <= 4'd10; 
+          	if (S >= 4'd8) begin
+                S <= 4'd9; 
                 F <= 1'b1;
             end 
           
