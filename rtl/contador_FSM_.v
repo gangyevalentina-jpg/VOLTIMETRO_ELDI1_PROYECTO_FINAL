@@ -3,7 +3,7 @@ module contador_FSM_ (
     input R,         
     input E,           
 
-  	output reg [3:0] S, 
+    output reg [3:0] S, 
     output reg F        
 );
 
@@ -12,13 +12,12 @@ module contador_FSM_ (
             S <= 4'd0;
             F <= 1'b0;
         end 
-     	else if (E) begin
-          	if (S == 4'd10) begin
-                S <= 4'd10; 
+        else if (E) begin
+            if (S >= 4'd9) begin
+                S <= 4'd9; 
                 F <= 1'b1;
             end 
-          
-          	else begin
+            else begin
                 S <= S + 1'b1;
                 F <= 1'b0;
             end
