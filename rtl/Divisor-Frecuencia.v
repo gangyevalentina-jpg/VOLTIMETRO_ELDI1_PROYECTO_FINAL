@@ -1,4 +1,4 @@
-module Clk(
+module Divisor_Frecuencia(
     input  wire clk_Basys, 
     input  wire rst,
   
