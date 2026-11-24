@@ -5,6 +5,7 @@
 * **Samuel Esteban Quesada Portela**
 
 ---
+**Informe Técnico Completo:** Consulta la memoria detallada de diseño, cálculos y análisis de resultados en [`docs/Voltimetro_ELDI_Proyecto_Final.pdf`](docs/Voltimetro_ELDI_Proyecto_Final.pdf).
 
 ## Resumen
 
