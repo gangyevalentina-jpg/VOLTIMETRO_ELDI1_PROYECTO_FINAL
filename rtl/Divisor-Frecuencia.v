@@ -1,3 +1,6 @@
+// Declaración de uso de IA:
+//   generada con asistencia de Google Gemini (2026)
+//   y validada por los autores.
 module Divisor_Frecuencia(
     input  wire clk_Basys, 
     input  wire rst,
