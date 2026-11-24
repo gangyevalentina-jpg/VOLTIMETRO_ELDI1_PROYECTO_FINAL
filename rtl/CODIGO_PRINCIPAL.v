@@ -13,7 +13,7 @@ module Modulo_Principal (
 
     wire clk; 
 
-    Clk Bloque_Clk (
+    Divisor_Frecuencia Bloque_Clk (
         .clk_Basys(clk_Basys), 
         .rst(Sw2),             
         .clk(clk)              

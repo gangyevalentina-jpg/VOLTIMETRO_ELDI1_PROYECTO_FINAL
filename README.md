@@ -230,3 +230,23 @@ Configurado mediante su primer comparador (pines 1–3) con resistencia *pull-up
 ```bash
 git clone [https://github.com/gangyevalentina-jpg/VOLTIMETRO_ELDI1_PROYECTO_FINAL.git](https://github.com/gangyevalentina-jpg/VOLTIMETRO_ELDI1_PROYECTO_FINAL.git)
 cd VOLTIMETRO_ELDI1_PROYECTO_FINAL
+```
+
+---
+
+## Resultados de Simulación (GTKWave y Consola)
+
+Para validar el funcionamiento integral del voltímetro (`test_modulo_general.v`), se simuló una entrada analógica de **$2.30\text{ V}$** (`codigo_objetivo = 10'b0111010111` / decimal `471`), verificando tanto la convergencia del algoritmo SAR en las formas de onda como la decodificación final hacia los displays de 7 segmentos[cite: 14, 15].
+
+### A. Convergencia SAR en GTKWave
+![Simulación SAR en GTKWave](docs/Esquematicos/wave_general.png)
+
+* **Búsqueda Binaria (`R_2R[9:0]`):** El registro SAR evalúa secuencialmente cada bit desde el MSB hasta el LSB (`0100000000` $\rightarrow$ `0110000000` $\rightarrow$ `0111000000` $\rightarrow$ `0111010000` $\rightarrow$ `0111010100` $\rightarrow$ `0111010110` $\rightarrow$ `0111010111`)[cite: 14].
+* **Decisión del Comparador (`C`):** Cada vez que la aproximación supera el voltaje de entrada (`1000000000` en $\approx 50\text{ }\mu\text{s}$, `0111100000` en $\approx 350\text{ }\mu\text{s}$ y `0111011000` en $\approx 500\text{ }\mu\text{s}$), la señal `C` conmuta a `'0'` y la FSM descarta dicho bit en el siguiente ciclo; cuando $V_{DAC} \le V_{in}$ (`C = 1`), el bit queda retenido hasta converger al valor esperado (`0111010111`)[cite: 14].
+
+### B. Salida Decodificada y Auto-Rango (`2.30 V`)
+![Resultado en Consola 2.30V](docs/Esquematicos/consola_general.png)
+
+* **Captura en Memoria (`Addr`):** Al finalizar los 10 ciclos, el registro de retención captura el código `471` (`0111010111`)[cite: 15].
+* **Selección de Escala (`PUNTO`):** Dado que `471 > 204` ($1.00\text{ V}$), el comparador de auto-rango activa `PUNTO = 1` (modo voltios `X.XX`)[cite: 15].
+* **Decodificación a 7 Segmentos:** La memoria ROM y los decodificadores entregan los patrones correspondientes a los dígitos **`2`** (`Di_1 = 1101101`), **`3`** (`Di_2 = 1111001`) y **`0`** (`Di_3 = 1111110`), formando la lectura visual **`2.30 V`**[cite: 15].
