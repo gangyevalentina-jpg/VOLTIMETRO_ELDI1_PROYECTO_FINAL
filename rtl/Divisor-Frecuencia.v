@@ -5,18 +5,18 @@ module Divisor_Frecuencia(
     output reg  clk        
 );
 
-    reg [11:0] contador;
+    reg [10:0] contador;
 
     always @(posedge clk_Basys or posedge rst) begin
         if (rst) begin
-            contador <= 12'd0;
+            contador <= 11'd0;
             clk      <= 1'b0;
         end else begin
-            if (contador == 12'd2499) begin
-                contador <= 12'd0;
+            if (contador == 11'd1249) begin
+                contador <= 11'd0;
                 clk      <= ~clk; 
             end else begin
-                contador <= contador + 1'b1;
+                contador <= contador + 11'd1;
             end
         end
     end
